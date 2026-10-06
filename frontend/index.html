@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AI Resume Builder</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">Resume<span>AI</span></div>
+  <nav>
+    <a href="#" onclick="goHome(); return false;">Home</a>
+    <a href="#" onclick="goDashboard(); return false;">Dashboard</a>
+    <a href="#" onclick="goBuilder(); return false;">Builder</a>
+    <button id="logoutBtn" class="ghost hidden">Logout</button>
+  </nav>
+</header>
+
+<main>
+<section id="home" class="hero">
+  <div>
+    <p class="eyebrow">AI-POWERED RESUME BUILDER</p>
+    <h1>Create a resume tailored to the job.</h1>
+    <p>Build, analyze, improve and export professional resumes with AI-assisted content and ATS keyword analysis.</p>
+    <button onclick="showAuth('register')" class="primary">Get Started</button>
+    <button onclick="showAuth('login')" class="secondary">Login</button>
+  </div>
+  <div class="hero-card">
+    <div class="score">86%</div>
+    <strong>ATS Compatibility</strong>
+    <p>Keyword matching • Formatting checks • Skill suggestions</p>
+  </div>
+</section>
+
+<section id="auth" class="panel hidden">
+  <div class="auth-box">
+    <h2 id="authTitle">Create account</h2>
+    <input id="authName" placeholder="Full name">
+    <input id="authEmail" type="email" placeholder="Email">
+    <input id="authPassword" type="password" placeholder="Password (6+ characters)">
+    <button class="primary" onclick="submitAuth()">Continue</button>
+    <p id="authSwitch"></p><p id="authMsg" class="msg"></p>
+  </div>
+</section>
+
+<section id="dashboard" class="section hidden">
+  <div class="section-head"><div><p class="eyebrow">DASHBOARD</p><h2>My resumes</h2></div><button class="primary" onclick="newResume()">+ New Resume</button></div>
+  <div id="resumeList" class="cards"></div>
+</section>
+
+<section id="builder" class="section hidden">
+  <div class="section-head">
+    <div><p class="eyebrow">RESUME BUILDER</p><h2 id="builderTitle">Create Resume</h2></div>
+    <div class="actions">
+      <button class="secondary" onclick="saveResume()">Save</button>
+      <button class="secondary" onclick="improveSummary()">AI Improve Summary</button>
+      <button class="secondary" onclick="runATS()">ATS Check</button>
+      <button class="secondary" onclick="exportFile('pdf')">PDF</button>
+      <button class="secondary" onclick="exportFile('docx')">DOCX</button>
+    </div>
+  </div>
+
+  <div class="builder-grid">
+    <div class="editor">
+      <label>Resume title<input id="title"></label>
+      <div class="two"><label>Phone<input id="phone"></label><label>Location<input id="location"></label></div>
+      <div class="two"><label>LinkedIn URL<input id="linkedin_url"></label><label>GitHub URL<input id="github_url"></label></div>
+      <label>Portfolio URL<input id="portfolio_url"></label>
+      <label>Professional summary<textarea id="summary" rows="5"></textarea></label>
+      <label>Career objective<textarea id="objective" rows="4"></textarea></label>
+
+      <div class="repeat-head"><div><h3>Skills</h3><p class="helper">Start typing to get skill suggestions. Added skills stay compact.</p></div><button type="button" onclick="addSkill()">+ Add</button></div>
+      <datalist id="skillSuggestions"><option value="Java"><option value="Python"><option value="JavaScript"><option value="TypeScript"><option value="C"><option value="C++"><option value="HTML"><option value="CSS"><option value="React"><option value="Angular"><option value="Node.js"><option value="Express.js"><option value="Spring Boot"><option value="REST API"><option value="PostgreSQL"><option value="MySQL"><option value="MongoDB"><option value="SQL"><option value="Git"><option value="GitHub"><option value="Docker"><option value="AWS"><option value="Azure"><option value="Machine Learning"><option value="Deep Learning"><option value="NLP"><option value="TensorFlow"><option value="PyTorch"><option value="Data Structures"><option value="Algorithms"><option value="OOP"><option value="Linux"><option value="Agile"><option value="Jira"><option value="Communication"><option value="Leadership"><option value="PeopleSoft"><option value="PeopleCode"><option value="Application Engine"><option value="Integration Broker"><option value="Workday"><option value="SAP"><option value="Power BI"><option value="Excel"><option value="Figma"></datalist>
+      <div id="skillsBox"></div>
+
+      <div class="repeat-head"><h3>Education</h3><button type="button" onclick="addEducation()">+ Add</button></div>
+      <div id="educationBox"></div>
+
+      <div class="repeat-head"><h3>Experience</h3><button type="button" onclick="addExperience()">+ Add</button></div>
+      <div id="experienceBox"></div>
+
+      <div class="repeat-head"><h3>Projects</h3><button type="button" onclick="addProject()">+ Add</button></div>
+      <div id="projectsBox"></div>
+
+      <h3>Job Description Analyzer</h3>
+      <textarea id="jobDescription" rows="8" placeholder="Paste the target job description here..."></textarea>
+      <button class="primary" onclick="analyzeJob()">Analyze Job Description</button>
+      <div id="analysisBox" class="result"></div><div id="atsBox" class="result"></div>
+    </div>
+    <div class="preview-wrap"><div class="preview" id="preview"></div></div>
+  </div>
+</section>
+</main>
+<footer>AI Resume Builder • CSE Project</footer>
+<script src="app.js"></script>
+</body>
+</html>
